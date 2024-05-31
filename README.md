@@ -1,2 +1,3 @@
 # Resource_wars_Demo
  卡牌游戏的创意Demo
+ 玩法创意参考了Stacklands并对其进行扩展使其更具有挑战性和竞技性
