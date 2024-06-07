@@ -2,19 +2,22 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Tool;
-public class Test : MonoBehaviour,IPointerDownHandler,IDragHandler
+using Unity.VisualScripting;
+public class Test : MonoBehaviour,IPointerDownHandler,IDragHandler,IPointerUpHandler
 {
-    public GameObject a;
-    public bool istf = false;
-    public Card_Tool tool = new Card_Tool();
+    public GameObject player;
     public void OnDrag(PointerEventData eventData)
     {
-
+        
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        ButtonRun();
+
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
     }
 
     void Start()
@@ -22,14 +25,8 @@ public class Test : MonoBehaviour,IPointerDownHandler,IDragHandler
     }
     void Update()
     {
-        if (istf)
-        {
-            tool.LookAt(gameObject, a, -1);
-        }
+        if(player!=null)
+            gameObject.transform.position = Vector3.Lerp(gameObject.transform.position,player.transform.position+new Vector3(0, -250, gameObject.transform.position.z),Time.deltaTime);
     }
-    public void ButtonRun()
-    {
-        istf = false;
-        transform.DOMove(a.transform.position, 1f).OnComplete(() => { transform.DORotate(new Vector3(0,0,0),0.5f); }) ;
-    }
+
 }
